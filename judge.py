@@ -17,27 +17,27 @@ board = [[0 for y in range(height)]for x in range (width)]
 # This is the function used to make a move.
 # The function recieves the column (that is going to be given by the intelligent algorithm), and the player number that is making the move.
 # If the move can't be made, the function returns -1, else: it returns the col in which it was placed.
-def place(row, player_number):
+def place(col, player_number):
     global board, width, height
-    if(row >= width or row < 0):
+    if(col >= width or col < 0):
         return -1
     partial_height = height  - 1
-    while(partial_height >= 0 and board[row][partial_height] == 0):
+    while(partial_height >= 0 and board[col][partial_height] == 0):
         partial_height-=1
     if(partial_height + 1 < height):
-        board[row][partial_height+1] = player_number
+        board[col][partial_height+1] = player_number
         return partial_height + 1
     return -1
 
 # Function used to check whether game has finished or not
-# Return values: 
+# Return values:
     # -1 -> game tie
     # 0  -> game continues
     # 1  -> game won by player_number
-    
+
 # Possible t's:
 
-#   010     111     10      01      100     001     101     101   
+#   010     111     10      01      100     001     101     101
 #   111     010     11      11      010     010     010     010
 #                   10      01      101     101     001     100
 
@@ -48,13 +48,13 @@ def gameFinished(player_number):
         if(board[pos][height-1] == 0):
             available_moves = True
             break;
- 
+
     if(checkAnyT(player_number)):
         return 1
-       
-    if(not available_moves): 
+
+    if(not available_moves):
         return -1
-        
+
     return 0
 
 #Function for printing the game board
@@ -64,10 +64,10 @@ def printGame():
         for y in range(0,width):
             #if(board[x][y] == 0):
              #   print (" ")
-            print board[y][x],
-        print "\n"
-    print "\n"
-            
+            print (board[y][x],end=" ")
+        print ("\n")
+    print ("\n")
+
 def checkAnyT(player_number):
     global board, width, height
     for r in range(0,width):
@@ -80,10 +80,10 @@ def checkAnyT(player_number):
                 or checkWinBottomRight(c, r, player_number)
                 or checkWinBottomLeft(c, r, player_number)
                 or checkWinTopLeft(c, r, player_number)
-                or checkWinTopRight(c, r, player_number)):                    
+                or checkWinTopRight(c, r, player_number)):
                     return True
     return False
-    
+
 def checkWinBelow(col, row, player_number):
     global board, width, height
     if(col+1 == height or row == 0 or row+1 == width): return False
@@ -95,19 +95,19 @@ def checkWinAbove(col, row, player_number):
     if(col == 0 or row == 0 or row+1 == width): return False
     if(board[row-1][col-1] == player_number and board[row][col-1] == player_number and board[row+1][col-1] == player_number): return True
     return False
-    
+
 def checkLeft(col, row, player_number):
     global board, width, height
     if(row + 1 >= width or col + 1 >= height or col - 1 < 0 ): return False
     if(board[row+1][col-1] == board[row+1][col] == board[row+1][col+1] == player_number): return True
     return False
-    
+
 def checkRight(col, row, player_number):
     global board, width, height
     if(row - 1 < 0 or col + 1 >= height or col - 1 < 0 ): return False
     if(board[row-1][col-1] == board[row-1][col] == board[row-1][col+1] == player_number): return True
     return False
-    
+
 def checkWinBottomRight(col, row, player_number):
     global board, width, height
     if(row - 2 < 0 or col + 2 >= height): return False
@@ -119,13 +119,13 @@ def checkWinBottomLeft(col, row, player_number):
     if(row + 2 >= width or col - 2 < 0): return False
     if(board[row+2][col] == player_number and board[row+1][col-1] == player_number and board[row][col-2] == player_number): return True
     return False
-    
+
 def checkWinTopLeft(col, row, player_number):
     global board, width, height
     if(row + 2 >= width or col - 2 < 0): return False
     if(board[row+2][col] == player_number and board[row+1][col-1] == player_number and board[row][col-2] == player_number): return True
     return False
-    
+
 def checkWinTopRight(col, row, player_number):
     global board, width, height
     if(row - 2 < 0 or col - 2 < 0): return False
@@ -154,14 +154,14 @@ def main():
         if (place(row,turn) == -1):
             loser = turn
             break;
-        
+
     #Game is a tie
-    if(gameFinished(turn) == -1): print "The game is a tie!"
-    elif not(loser == 0): print "The loser is ", turn
-    else: 
+    if(gameFinished(turn) == -1): print ("The game is a tie!")
+    elif not(loser == 0): print ("The loser is ", turn)
+    else:
         printGame()
-        print "The winner is ", turn
-        
-    
+        print ("The winner is ", turn)
+
+
 if __name__ == '__main__':
    main()
