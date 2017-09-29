@@ -8,7 +8,7 @@
 
 # Conecta-T
 
-El reto de la "Semana I" será desarrollar un algoritmo para el juego Conecta-T mediante estrategias de "Machine Learning". En equipos formados por cuatro integrantes, deben subir el archivo que contiene su programa resultante antes del viernes 29 de septiembre a las 6:00 am.
+El reto de la "Semana I" será desarrollar un algoritmo para el juego Conecta-T mediante estrategias de "Machine Learning". En equipos formados por máximo cuatro integrantes, deben mandar el archivo que contiene su programa resultante antes del viernes 29 de septiembre a las 6:00 am al email del profesor Víctor de la Cueva (vcueva@itesm.mx).
 
 El juego es una variación de "Conecta-4", la única diferencia es que las cuatro fichas a conectar deben formar una 'T'.
 
