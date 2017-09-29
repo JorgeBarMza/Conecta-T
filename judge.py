@@ -106,7 +106,7 @@ def checkWinAbove(row, col, player_number):
 
 def checkLeft(row, col, player_number):
     global board, width, height
-    if (row + 1 >= height or col + 1 >= width or col - 1 < 0): return False
+    if (row + 1 >= height or col + 1 >= width or row - 1 < 0): return False
     if (board[row - 1][col + 1] == board[row][col + 1] == board[row + 1][col + 1] == player_number): return True
     return False
 
